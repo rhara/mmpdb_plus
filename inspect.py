@@ -5,7 +5,7 @@ from rows import *
 from tables import *
 from sqlwrap import conn
 
-conn[0] = sqlite3.connect('test_data.mmpdb')
+conn[0] = sqlite3.connect(sys.argv[1])
 
 out = sys.stdout
 
