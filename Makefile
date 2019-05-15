@@ -18,3 +18,8 @@ test:
 	mmpdb index $(NUM).fragments -o $(NUM).mmpdb --properties $(NUM).csv --max-radius 3
 	mmpdb transform --smiles 'c1cccnc1O' $(NUM).mmpdb --property logP
 	python inspect_mmpdb.py $(NUM).mmpdb
+
+clean:
+	@rm -rf *~ *.bak
+	@rm -rf __pycache__
+	rm -rf $(NUM).csv $(NUM).fragments $(NUM).mmpdb $(NUM)_mmpdb.csv $(NUM).smi
