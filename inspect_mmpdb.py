@@ -10,7 +10,7 @@ iname = sys.argv[1]
 assert iname.endswith('.mmpdb')
 
 bname = os.path.basename(iname)[:-6]
-out_csv = bname + '.csv'
+out_csv = bname + '_mmpdb.csv'
 
 conn[0] = sqlite3.connect(iname)
 
