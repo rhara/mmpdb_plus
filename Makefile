@@ -2,6 +2,7 @@
 ### Example)
 ###   $ NUM=000004 make prep
 ###   $ NUM=000004 make test
+###   $ NUM=000004 make clean
 ###
 
 default:
