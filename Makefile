@@ -12,6 +12,9 @@ test_000064:
 	mmpdb index 000064.fragments -o 000064.mmpdb --properties 000064.csv --smallest-transformation-only --symmetric
 	mmpdb transform --smiles 'c1cccnc1O' 000064.mmpdb --property logP
 
+make_data:
+	python make_data.py 000004_orig.smi
+
 test_000004:
 	mmpdb fragment 000004.smi -o 000004.fragments
 	mmpdb index 000004.fragments -o 000004.mmpdb --properties 000004.csv --max-radius 3
