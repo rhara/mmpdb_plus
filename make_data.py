@@ -21,17 +21,17 @@ def run(iname):
         it = line.split('\t')
         smiles, chembl_id, assay_type, relation, value, units, flag = it
         if smiles not in D:
-            D[smiles] = []
-        D[smiles].append((assay_type, relation, value, units, flag))
+            D[smiles] = dict(chembl_id=chembl_id, entries=[])
+        D[smiles]['entries'].append((assay_type, relation, value, units))
 
     pbar = tqdm.tqdm(total=len(D), ascii=False)
     for smiles in D:
         pbar.update()
 
-        N = len(D[smiles])
+        N = len(D[smiles]['entries'])
 
         values = []
-        for entry in D[smiles]:
+        for entry in D[smiles]['entries']:
             if entry[3] != 'nM':
                 continue
             try:
@@ -62,6 +62,8 @@ def run(iname):
 
         mw = round(Descriptors.MolWt(mol), 2)
         logp = round(Descriptors.MolLogP(mol), 2)
+
+        chembl_id = D[smiles]['chembl_id']
 
         print(smiles, chembl_id, sep='\t', file=out_smi)
         print(chembl_id, mw, logp, n, avg, std, sep='\t', file=out_csv)

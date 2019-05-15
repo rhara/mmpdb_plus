@@ -1,14 +1,20 @@
 #!/usr/bin/env python
 
-import sys, sqlite3, re
+import sys, os, sqlite3, re
 from rows import *
 from tables import *
 from sqlwrap import conn
 import tqdm
 
-conn[0] = sqlite3.connect(sys.argv[1])
+iname = sys.argv[1]
+assert iname.endswith('.mmpdb')
 
-out = open('z.csv', 'wt')
+bname = os.path.basename(iname)[:-6]
+out_csv = bname + '.csv'
+
+conn[0] = sqlite3.connect(iname)
+
+out = open(out_csv, 'wt')
 
 table_property_name = TablePropertyName('property_name')
 table_environment_fingerprint = TableEnvironmentFingerprint('environment_fingerprint')
